@@ -6,6 +6,7 @@ import { MdManageHistory } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { dataProduct } from '../views/home/data';
 import useStore from './store';
+import { Link } from 'react-router-dom';
 
 export const Navbar = ({ children }) => {
     const [showMenu, setShowManu] = useState(true);
@@ -17,26 +18,10 @@ export const Navbar = ({ children }) => {
             path: '/'
         },
         {
-            title: 'ຂາຍສິນຄ້າ',
-            icon: <AiFillProduct />,
-            path: '/products'
-        },
-        {
-            title: 'ປະຫວັດການສັ່ງຊື້',
+            title: 'ປະຫວັດການຂາຍ',
             icon: <MdManageHistory />,
             path: '/history'
-        },
-        {
-            title: 'ຈັດການສິນຄ້າ',
-            icon: <MdManageHistory />,
-            path: '/manage'
-        },
-        {
-            title: 'ຈັດການສິນຄ້າ',
-            icon: <MdManageHistory />,
-            path: '/manage'
-        }
-    ]
+        }]
     const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
     return (
         <div className=' w-full bg-[#fffcf2]'>
@@ -47,12 +32,12 @@ export const Navbar = ({ children }) => {
                 <ul className={`absolute -right-7 top-12 bg-[#fffcf2] w-[180px] z-50 ${showMenu ? 'hidden' : 'block'}`}>
                     {
                         navData.map((item, index) => (
-                            <li key={index} className=' flex items-center gap-x-2 p-2 hover:bg-[#e3f3da]'>
+                            <Link to={item.path} key={index} className=' flex items-center gap-x-2 p-2 hover:bg-[#e3f3da]'>
                                 <div>
                                     {item.icon}
                                 </div>
                                 <p>{item.title}</p>
-                            </li>
+                            </Link>
                         ))
                     }
                 </ul>
