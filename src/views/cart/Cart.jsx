@@ -5,6 +5,7 @@ import { LuMinus, LuPlus } from "react-icons/lu";
 import useStore from '../../components/store';
 import formatNumber from '../../components/formatNumber';
 import { dataProduct } from '../home/data';
+import { Link } from 'react-router-dom';
 
 export const Cart = () => {
     const cart = useStore((state) => state.cart);
@@ -99,8 +100,8 @@ export const Cart = () => {
                     </h1>
                 </div>
                 <div className=' flex justify-end mt-10'>
-                    <button onClick={() => window.location.href = "/payment"}
-                        className=' bg-green-300 px-5 py-2 rounded-md font-semibold'>ຢືນຢັນການສັ່ງຊື້</button>
+                    <Link to={'/payment'}
+                        className=' bg-green-300 px-5 py-2 rounded-md font-semibold'>ຢືນຢັນການສັ່ງຊື້</Link>
                 </div>
             </div>
         </div>

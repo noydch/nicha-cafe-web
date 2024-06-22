@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useStore from '../../components/store'
 import formatNumber from '../../components/formatNumber'
@@ -63,8 +63,8 @@ export const Payment = () => {
                 </div>
             </div>
             <div className=' w-full mx-auto items-center flex justify-around mt-10 absolute bottom-5'>
-                <button onClick={() => window.location.href = "/cart"}
-                    className=' w-[170px] rounded-lg text-center bg-gray-400 py-3'>ຍົກເລີກ</button>
+                <Link to={'/cart'}
+                    className=' w-[170px] rounded-lg text-center bg-gray-400 py-3'>ຍົກເລີກ</Link>
                 <button onClick={confirmPayment}
                     className=' w-[170px] rounded-lg text-center bg-green-400 py-3'>ຢືນຢັນການຊຳລະເງິນ</button>
             </div>
