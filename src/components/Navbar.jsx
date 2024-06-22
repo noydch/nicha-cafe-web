@@ -37,6 +37,7 @@ export const Navbar = ({ children }) => {
             path: '/manage'
         }
     ]
+    const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
     return (
         <div className=' w-full bg-[#fffcf2]'>
             <nav className=' relative flex items-center justify-between max-w-[400px] mx-auto h-[60px]'>
@@ -59,7 +60,7 @@ export const Navbar = ({ children }) => {
                     <div className=' relative flex' onClick={() => window.location.href = "/cart"}>
                         <FaShoppingCart className=' text-[24px] text-green-300' />
                         <span className=' absolute bg-red-500 h-3 w-3 flex items-center justify-center text-white rounded-full text-[10px] right-[-5px]'>
-                            {cart.length}
+                            {totalQuantity}
                         </span>
                     </div>
                     <div className=' sm:hidden block  text-[32px]' onClick={() => setShowManu(!showMenu)}>

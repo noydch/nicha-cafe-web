@@ -1,33 +1,15 @@
-import React, { useState } from 'react'
-import { IoIosArrowBack } from "react-icons/io";
-import { FaTrashAlt } from "react-icons/fa";
-import { LuMinus, LuPlus } from "react-icons/lu";
-import useStore from '../../components/store';
-import formatNumber from '../../components/formatNumber';
-import { dataProduct } from '../home/data';
+import React from 'react'
+import useStore from '../../components/store'
 
-export const Cart = () => {
-    const cart = useStore((state) => state.cart);
-    const removeItem = useStore((state) => state.removeItem);
-    // console.log(useStore((state) => state.cart));
-    const updateQty = useStore((state) => state.updateQty)
-
-    const addQty = (id) => {
-        updateQty(id, 1)
-    }
-    const minusQty = (id) => {
-        updateQty(id, -1)
-    }
-
-    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0)
+export const History = () => {
+    const addOrderHistory = useStore((stete) => stete.addOrderHistory);
+    const orderHistory = useStore((state) => state.orderHistory)
 
     return (
-        <div className=' w-full'>
+        <div className=' w-full bg-white h-screen relative'>
             <div className='bg-[#fffcf2] h-[60px] w-full shadow'>
                 <div className='relative flex items-center h-full max-w-[400px] mx-auto justify-center'>
-                    <IoIosArrowBack onClick={() => window.location.href = "/"}
-                        className=' absolute left-0 text-[24px]' />
-                    <h2 className=' text-[20px] font-semibold'>ກະຕ່າສິນຄ້າ</h2>
+                    <h2 className=' text-[20px] font-semibold'>ປະຫວັດການສັ່ງຊື້</h2>
                 </div>
             </div>
             <div className='h-full mt-2 max-w-[400px] max mx-auto overflow-x-auto p-2'>
@@ -44,10 +26,10 @@ export const Cart = () => {
                         </tr>
                     </thead>
                     {
-                        cart.length > 0 ? (
+                        orderHistory.length > 0 ? (
                             <tbody>
                                 {
-                                    cart.map((item, index) => (
+                                    orderHistory.map((item, index) => (
                                         <tr key={index}>
                                             <td className=' text-center py-5 font-medium'>{item.id}</td>
                                             <td className=' py-1'>
@@ -56,7 +38,7 @@ export const Cart = () => {
                                                 />
                                             </td>
                                             <td className=' text-center py-5 px-2 font-medium'>{item.nameLao}</td>
-                                            <td className=' text-center py-5 px-2 font-medium'>{formatNumber(item.price)}</td>
+                                            <td className=' text-center py-5 px-2 font-medium'>{item.price}</td>
                                             <td className=' text-center py-5 px-2 font-medium'>
                                                 <div className=' flex w-full justify-center gap-1 items-center'>
                                                     <div onClick={() => minusQty(item.id)}
@@ -90,18 +72,6 @@ export const Cart = () => {
                             </tbody>
                     }
                 </table>
-            </div>
-            <div className=' w-full max-w-[400px] max mx-auto'>
-                <div className=' flex justify-center flex-col items-center mt-10 shadow-md py-4 rounded-lg'>
-                    <h1 className=' text-[20px] font-bold text-red-500'>ຈຳນວນເງິນທີ່ຕ້ອງຊຳລະ</h1>
-                    <h1 className=' text-[18px] font-bold text-green-500'>
-                        {formatNumber(totalPrice)}
-                    </h1>
-                </div>
-                <div className=' flex justify-end mt-10'>
-                    <button onClick={() => window.location.href = "/payment"}
-                        className=' bg-green-300 px-5 py-2 rounded-md font-semibold'>ຢືນຢັນການສັ່ງຊື້</button>
-                </div>
             </div>
         </div>
     )

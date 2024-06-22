@@ -34,7 +34,8 @@ export const dataProduct = [
         price: 55000,
         picture: d01,
         detail: "",
-        category: "DRINK"
+        category: "DRINK",
+        quantity: 1,
     },
     {
         id: 2,
@@ -43,7 +44,8 @@ export const dataProduct = [
         price: 55000,
         picture: d02,
         detail: "",
-        category: "DRINK"
+        category: "DRINK",
+        quantity: 1,
     },
     {
         id: 3,
@@ -52,7 +54,8 @@ export const dataProduct = [
         price: 55000,
         picture: d03,
         detail: "",
-        category: "DRINK"
+        category: "DRINK",
+        quantity: 1,
     },
     {
         id: 4,
@@ -61,7 +64,8 @@ export const dataProduct = [
         price: 45000,
         picture: d04,
         detail: "",
-        category: "DRINK"
+        category: "DRINK",
+        quantity: 1,
     },
     {
         id: 5,
@@ -70,7 +74,8 @@ export const dataProduct = [
         price: 59000,
         picture: d06,
         detail: "",
-        category: "DRINK"
+        category: "DRINK",
+        quantity: 1,
     },
     {
         id: 6,
@@ -79,7 +84,8 @@ export const dataProduct = [
         price: 45000,
         picture: d07,
         detail: "",
-        category: "DRINK"
+        category: "DRINK",
+        quantity: 1,
     },
     {
         id: 7,
@@ -88,7 +94,8 @@ export const dataProduct = [
         price: 55000,
         picture: d08,
         detail: "",
-        category: "DRINK"
+        category: "DRINK",
+        quantity: 1,
     },
     {
         id: 8,
@@ -97,7 +104,8 @@ export const dataProduct = [
         price: 52000,
         picture: d09,
         detail: "",
-        category: "COFFEE"
+        category: "COFFEE",
+        quantity: 1,
     },
     {
         id: 9,
@@ -106,7 +114,8 @@ export const dataProduct = [
         price: 55000,
         picture: d10,
         detail: "",
-        category: "COFFEE"
+        category: "COFFEE",
+        quantity: 1,
     },
     {
         id: 10,
@@ -115,7 +124,8 @@ export const dataProduct = [
         price: 95000,
         picture: f01,
         detail: "",
-        category: "FOOD"
+        category: "FOOD",
+        quantity: 1,
     },
     {
         id: 11,
@@ -124,7 +134,8 @@ export const dataProduct = [
         price: 95000,
         picture: f02,
         detail: "",
-        category: "FOOD"
+        category: "FOOD",
+        quantity: 1,
     },
     {
         id: 12,
@@ -133,7 +144,8 @@ export const dataProduct = [
         price: 85000,
         picture: f03,
         detail: "",
-        category: "FOOD"
+        category: "FOOD",
+        quantity: 1,
     },
     {
         id: 13,
@@ -142,7 +154,8 @@ export const dataProduct = [
         price: 65000,
         picture: f04,
         detail: "",
-        category: "DESSERT"
+        category: "DESSERT",
+        quantity: 1,
     },
     {
         id: 14,
@@ -151,7 +164,8 @@ export const dataProduct = [
         price: 65000,
         picture: f05,
         detail: "",
-        category: "DESSERT"
+        category: "DESSERT",
+        quantity: 1,
     },
     {
         id: 15,
@@ -160,7 +174,8 @@ export const dataProduct = [
         price: 80000,
         picture: f06,
         detail: "",
-        category: "DESSERT"
+        category: "DESSERT",
+        quantity: 1,
     },
     {
         id: 16,
@@ -169,7 +184,8 @@ export const dataProduct = [
         price: 70000,
         picture: f07,
         detail: "",
-        category: "FOOD"
+        category: "FOOD",
+        quantity: 1,
     },
     {
         id: 17,
@@ -178,7 +194,8 @@ export const dataProduct = [
         price: 70000,
         picture: f08,
         detail: "",
-        category: "FOOD"
+        category: "FOOD",
+        quantity: 1,
     },
     {
         id: 18,
@@ -187,7 +204,8 @@ export const dataProduct = [
         price: 85000,
         picture: f09,
         detail: "",
-        category: "FOOD"
+        category: "FOOD",
+        quantity: 1,
     }
 ]
 
