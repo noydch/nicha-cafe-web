@@ -22,9 +22,9 @@ export const Navbar = ({ children }) => {
             path: '/products'
         },
         {
-            title: 'ຈັດການສິນຄ້າ',
+            title: 'ປະຫວັດການສັ່ງຊື້',
             icon: <MdManageHistory />,
-            path: '/manage'
+            path: '/history'
         },
         {
             title: 'ຈັດການສິນຄ້າ',
