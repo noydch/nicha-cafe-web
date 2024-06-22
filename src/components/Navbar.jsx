@@ -42,12 +42,12 @@ export const Navbar = ({ children }) => {
                     }
                 </ul>
                 <div className=' flex items-center gap-x-5'>
-                    <div className=' relative flex' onClick={() => window.location.href = "/cart"}>
+                    <Link to={'/cart'} className=' relative flex' >
                         <FaShoppingCart className=' text-[24px] text-green-300' />
                         <span className=' absolute bg-red-500 h-3 w-3 flex items-center justify-center text-white rounded-full text-[10px] right-[-5px]'>
                             {totalQuantity}
                         </span>
-                    </div>
+                    </Link>
                     <div className=' sm:hidden block  text-[32px]' onClick={() => setShowManu(!showMenu)}>
                         {showMenu ? <IoMenu /> : <IoClose />}
                     </div>
