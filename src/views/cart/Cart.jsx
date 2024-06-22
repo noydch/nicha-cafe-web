@@ -26,8 +26,10 @@ export const Cart = () => {
         <div className=' w-full'>
             <div className='bg-[#fffcf2] h-[60px] w-full shadow'>
                 <div className='relative flex items-center h-full max-w-[400px] mx-auto justify-center'>
-                    <IoIosArrowBack onClick={() => window.location.href = "/"}
-                        className=' absolute left-0 text-[24px]' />
+                    <Link to={'/'} className='absolute left-0 text-[24px]'>
+                        <IoIosArrowBack
+                        />
+                    </Link>
                     <h2 className=' text-[20px] font-semibold'>ກະຕ່າສິນຄ້າ</h2>
                 </div>
             </div>

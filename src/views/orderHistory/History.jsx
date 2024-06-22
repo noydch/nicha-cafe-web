@@ -3,6 +3,7 @@ import useStore from '../../components/store';
 import { IoIosArrowBack } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa";
 import formatNumber from '../../components/formatNumber';
+import { Link } from 'react-router-dom';
 
 export const History = () => {
     const orderHistory = useStore((state) => state.orderHistory);
@@ -11,8 +12,10 @@ export const History = () => {
         <div className='w-full bg-white h-screen relative'>
             <div className='bg-[#fffcf2] h-[60px] w-full shadow'>
                 <div className='relative flex items-center h-full max-w-[400px] mx-auto justify-center'>
-                    <IoIosArrowBack onClick={() => window.location.href = "/"}
-                        className='absolute left-0 text-[24px]' />
+                    <Link to={'/'} className='absolute left-0 text-[24px]'>
+                        <IoIosArrowBack
+                        />
+                    </Link>
                     <h2 className='text-[20px] font-semibold'>ປະຫວັດການສັ່ງຊື້</h2>
                 </div>
             </div>
