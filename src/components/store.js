@@ -14,7 +14,7 @@ const useStore = create(
                         return {
                             cart: state.cart.map(cartItem =>
                                 cartItem.id === item.id
-                                    ? { ...cartItem, quantity: cartItem.quantity + 1 } // Increment quantity
+                                    ? { ...cartItem, quantity: cartItem.quantity + 1 }
                                     : cartItem
                             )
                         };
@@ -25,12 +25,11 @@ const useStore = create(
                             width: "350px",
                         });
                         return {
-                            cart: [...state.cart, { ...item, quantity: 1 }] // Add new item with quantity 1
+                            cart: [...state.cart, { ...item, quantity: 1 }]
                         };
                     }
                 });
             },
-
             removeItem: (itemId) => set((state) => ({
                 cart: state.cart.filter((item) => item.id !== itemId)
             })),
@@ -49,11 +48,23 @@ const useStore = create(
             addOrderHistory: (orderData) => {
                 set((state) => ({
                     orderHistory: [...state.orderHistory, orderData],
-                    cart: [], // Clear the cart after adding to order history
+                    cart: [],
                 }));
             },
+            checkout: () => {
+                set((state) => {
+                    const orderData = {
+                        items: state.cart,
+                        date: new Date().toISOString(),
+                    };
+                    return {
+                        orderHistory: [...state.orderHistory, orderData],
+                        cart: [],
+                    };
+                });
+                localStorage.removeItem('cart');
+            },
         }),
-
         {
             name: 'cart-storage',
             getStorage: () => localStorage

@@ -9,7 +9,7 @@ export const Payment = () => {
     const navigate = useNavigate()
     const cart = useStore((state) => state.cart);
     const clearCart = useStore((state) => state.clearCart);
-    const addOrderHistory = useStore((state) => state.addOrderHistory)
+    const checkout = useStore((state) => state.checkout)
 
     const handleImageChange = (event) => {
         const file = event.target.files[0]
@@ -24,9 +24,10 @@ export const Payment = () => {
             icon: 'success',
             title: "ຊຳລະເງິນສຳເລັດ!",
             width: '300px'
-        }).then(() => navigate('/history'));
-        // addOrderHistory(cart)
-        clearCart()
+        }).then(() => {
+            navigate('/history')
+            checkout()
+        });
     }
 
     return (
