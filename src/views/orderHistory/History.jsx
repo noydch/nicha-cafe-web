@@ -7,11 +7,19 @@ import { Link } from 'react-router-dom';
 
 export const History = () => {
     const orderHistory = useStore((state) => state.orderHistory);
+    const clearHistory = useStore((state) => state.clearHistory);
+
+    const id = localStorage.getItem('id')
+    if (!id) {
+        clearHistory()
+        console.log("not found id");
+    }
+
 
     return (
         <div className='w-full bg-white h-screen relative'>
             <div className='bg-[#fffcf2] h-[60px] w-full shadow'>
-                <div className='relative flex items-center h-full max-w-[400px] mx-auto justify-center'>
+                <div className='relative flex items-center h-full max-w-sm mx-auto justify-center'>
                     <Link to={'/'} className='absolute left-0 text-[24px]'>
                         <IoIosArrowBack
                         />
@@ -19,7 +27,7 @@ export const History = () => {
                     <h2 className='text-[20px] font-semibold'>ປະຫວັດການສັ່ງຊື້</h2>
                 </div>
             </div>
-            <div className='h-full mt-2 max-w-[400px] mx-auto overflow-x-auto p-2'>
+            <div className='h-full mt-2 max-w-sm mx-auto overflow-x-auto p-2'>
                 <table className='w-max table-auto shadow-md'>
                     <thead className='text-[15px] bg-[#d5e2bb]'>
                         <tr>
@@ -29,6 +37,7 @@ export const History = () => {
                             <th className='font-medium py-3 px-3'>ລາຄາ</th>
                             <th className='font-medium py-3 px-3'>ຈຳນວນ</th>
                             <th className='font-medium py-3 px-3'>ລາຄາລວມ</th>
+                            <th className='font-medium py-3 px-3'>ໂຕະ</th>
                             <th className='font-medium py-3 px-3'>ສະຖານະ</th>
                         </tr>
                     </thead>
@@ -39,9 +48,9 @@ export const History = () => {
                                     orderHistory.map((order, orderIndex) => (
                                         order.items.map((item, index) => (
                                             <tr key={`${orderIndex}-${index}`}>
-                                                <td className='text-center py-5 font-medium'>{item.id}</td>
+                                                <td className='text-center py-5 font-medium'>{item.PID}</td>
                                                 <td className='py-1'>
-                                                    <img src={item.picture} alt=""
+                                                    <img src={item.image} alt=""
                                                         className='w-16 h-16 object-cover rounded-md'
                                                     />
                                                 </td>
@@ -54,6 +63,9 @@ export const History = () => {
                                                 </td>
                                                 <td className='text-center py-5 px-2 font-medium'>
                                                     {formatNumber(item.price * item.quantity)}
+                                                </td>
+                                                <td className='text-center py-5 px-2'>
+                                                    {id}
                                                 </td>
                                                 <td className='text-center py-5 px-2'>
                                                     <div className='flex items-center gap-2 text-green-500 font-semibold'>
@@ -75,6 +87,10 @@ export const History = () => {
                     }
                 </table>
             </div>
+            {/* <div className=' w-full flex justify-center absolute z-[999] bottom-5'>
+                <button onClick={clearHistory}
+                    className=' bg-red-500 px-5 text-white py-2 rounded-lg'>ລົບປະຫວັດທັງໝົດ</button>
+            </div> */}
         </div>
     );
 };

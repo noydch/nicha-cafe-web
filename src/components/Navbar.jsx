@@ -25,7 +25,7 @@ export const Navbar = ({ children }) => {
     const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
     return (
         <div className=' w-full bg-[#fffcf2]'>
-            <nav className=' relative flex items-center justify-between max-w-[400px] mx-auto h-[60px]'>
+            <nav className=' relative flex items-center justify-between max-w-sm mx-auto h-[60px]'>
                 <div className=' border-2 rounded-full border-gray-400'>
                     <img src={logo} alt="" className=' w-12 rounded-full' />
                 </div>

@@ -12,6 +12,10 @@ export default function RouterPath() {
             element: <Home />,
         },
         {
+            path: '/:id',
+            element: <Home />,
+        },
+        {
             path: '/cart',
             element: <Cart />
         },

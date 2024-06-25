@@ -1,22 +1,103 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navbar } from '../../components/Navbar'
 
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { HomeProduct } from './HomeProduct';
+import { getProductTypeApi } from '../../api/product_type';
+import Swal from 'sweetalert2';
+import { useParams } from 'react-router-dom';
+import { getProductApi, searchProductApi } from '../../api/product';
 
 export const Home = () => {
+
+    const { id } = useParams()
+
+    console.log(id);
+    useEffect(() => {
+        localStorage.setItem('id', id)
+    }, [])
+
+
+    const [productType, setProductType] = useState([]);
+    const [selectedType, setSelectedType] = useState('')
+    const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState('');
+    const [product, setProduct] = useState([]);
+
+    const fetchData = async () => {
+        setLoading(true)
+        const response = await getProductTypeApi();
+        if (!response) {
+            Swal.fire({
+                icon: 'error',
+                title: "ເກີດຂໍ້ຜິດພາດ",
+                text: "ບໍ່ສາມາດດຶງຂໍ້ມູນໄດ້"
+            })
+        }
+        setProductType(response)
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        fetchData()
+        // console.log(productType);
+    }, [])
+
+    const fetchData2 = async () => {
+        setLoading(true);
+        const response = await getProductApi();
+        if (!response) {
+            Swal.fire({
+                icon: 'error',
+                title: "ເກີດຂໍ້ຜິດພາດ",
+                text: "ດຶງຂໍ້ມູນບໍ່ສຳເລັດ",
+                width: "300px"
+            });
+            return;
+        }
+        setProduct(response);
+        setLoading(false)
+    };
+
+    useEffect(() => {
+        fetchData2();
+    }, []);
+
+
+    const handleProductType = (e) => {
+        setSelectedType(e.target.value)
+    }
+
+    const onSearch = async () => {
+        const responseSearch = await searchProductApi(search)
+        if (!responseSearch) {
+            console.log("Error search");
+        }
+        setProduct(responseSearch)
+    }
+
+
     return (
         <Navbar>
             <div className=' w-full bg-white h-screen'>
                 <div className=' bg-[#ffecd5]  w-full'>
-                    <div className=' max-w-[400px] mx-auto '>
+                    <div className=' max-w-sm mx-auto '>
                         <div className='py-1.5'>
                             <div className='flex items-center justify-around px-3 gap-x-1'>
                                 <div className=' relative w-full flex items-center '>
-                                    <select className=' w-full border-2 border-black p-3 py-2 rounded-md appearance-none outline-none'>
-                                        <option value="">ປະເພດສິນຄ້າ</option>
-                                        <option value="">ກາເຟ</option>
+                                    <select onChange={handleProductType}
+                                        className=' w-full cursor-pointer border-2 border-black p-3 py-2 rounded-md appearance-none outline-none'>
+                                        <option value="" selected>ປະເພດສິນຄ້າ</option>
+                                        {
+                                            productType.map((item, index) => (
+                                                <option value={item.PTID} key={index}
+                                                    className=' w-full'
+                                                >
+                                                    {item.name}
+                                                </option>
+                                            ))
+                                        }
                                     </select>
                                     <MdOutlineArrowDropDown className=' absolute right-2 text-[20px]' />
                                 </div>
@@ -25,17 +106,19 @@ export const Home = () => {
                             <div className=' flex justify-between items-center mt-2'>
                                 <div className=' [270px] relative flex items-center'>
                                     <input type="text"
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        value={search}
                                         placeholder='Search'
                                         className=' w-[270px] pl-9 border-2 border-black outline-none py-2 rounded-md'
                                     />
                                     <IoSearch className=' absolute left-2 text-[22px]' />
                                 </div>
-                                <button className=' bg-[#d5e2bb] py-2 w-[100px] rounded-md'>ຄົ້ນຫາ</button>
+                                <button onClick={onSearch} className=' bg-[#d5e2bb] py-2 w-[100px] rounded-md'>ຄົ້ນຫາ</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <HomeProduct />
+                <HomeProduct selectedType={selectedType} product={product} />
             </div>
         </Navbar>
     )

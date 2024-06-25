@@ -7,13 +7,15 @@ const useStore = create(
         (set) => ({
             cart: [],
             orderHistory: [],
+            selectTable: '',
+            setSelectTable: (table) => set({ selectTable: table }),
             addToCart: (item) => {
                 set((state) => {
-                    const existingItem = state.cart.find(cartItem => cartItem.id === item.id);
+                    const existingItem = state.cart.find(cartItem => cartItem.PID === item.PID);
                     if (existingItem) {
                         return {
                             cart: state.cart.map(cartItem =>
-                                cartItem.id === item.id
+                                cartItem.PID === item.PID
                                     ? { ...cartItem, quantity: cartItem.quantity + 1 }
                                     : cartItem
                             )
@@ -31,11 +33,11 @@ const useStore = create(
                 });
             },
             removeItem: (itemId) => set((state) => ({
-                cart: state.cart.filter((item) => item.id !== itemId)
+                cart: state.cart.filter((item) => item.PID !== itemId)
             })),
             updateQty: (id, quantity) => set((state) => {
                 const updatedCart = state.cart.map((item) =>
-                    item.id === id ? { ...item, quantity: Math.max(item.quantity + quantity, 0) }
+                    item.PID === id ? { ...item, quantity: Math.max(item.quantity + quantity, 0) }
                         : item
                 );
 
@@ -44,6 +46,10 @@ const useStore = create(
             clearCart: () => {
                 localStorage.removeItem('cart');
                 set({ cart: [] })
+            },
+            clearHistory: () => {
+                localStorage.removeItem('cart');
+                set({ orderHistory: [] })
             },
             addOrderHistory: (orderData) => {
                 set((state) => ({
@@ -71,5 +77,7 @@ const useStore = create(
         }
     )
 );
+
+// const tableNo = create()
 
 export default useStore;
