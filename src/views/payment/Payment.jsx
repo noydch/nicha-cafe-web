@@ -30,12 +30,14 @@ export const Payment = () => {
         }
     }
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0)
+    // total quantity * price
+    const total = cart.reduce((total, item) => total + item.quantity * item.price, 0)
 
 
     const confirmPayment = async () => {
         const data = {
             noTable: id,
-            totalPrice: 20099,
+            totalPrice: total,
             file: dataImg
         }
         const response = await addOrderTableNo(data);
@@ -49,13 +51,13 @@ export const Payment = () => {
 
         for (let item of cart) {
             const data2 = {
-                orders_id: 23,
+                orders_id: 80,
                 product_id: item.PID,
                 qty: item.quantity,
                 total: item.price * item.quantity
             }
             const response2 = await addOrderDetail(data2)
-            if (response2) {
+            if (!response2) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',

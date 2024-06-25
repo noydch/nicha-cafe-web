@@ -10,8 +10,8 @@ export const addOrderDetail = async (data) => {
             }
         }
         const response = await axios.post(ApiPath.addOrderDetail, data, config)
-        console.log(response?.data?.data);
-        return response?.data?.data
+        console.log(response);
+        return response
     } catch (error) {
         console.log("Order Detail is Error ==>", error);
     }
