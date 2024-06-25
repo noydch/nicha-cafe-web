@@ -10,13 +10,17 @@ import { useParams } from 'react-router-dom';
 import { getProductApi, searchProductApi } from '../../api/product';
 
 export const Home = () => {
+    const { id: paramId } = useParams();
+    const [id, setId] = useState('');
 
-    const { id } = useParams()
-
-    console.log(id);
     useEffect(() => {
-        localStorage.setItem('id', id)
-    }, [])
+        if (!paramId || paramId === '/') {
+            setId('1');
+        } else {
+            setId(paramId);
+        }
+        localStorage.setItem('id', id);
+    }, [paramId, id]);
 
 
     const [productType, setProductType] = useState([]);
