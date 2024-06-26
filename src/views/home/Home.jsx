@@ -79,14 +79,26 @@ export const Home = () => {
         setSelectedType(e.target.value)
     }
 
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+    }
     const onSearch = async () => {
         const responseSearch = await searchProductApi(search)
+        // console.log(responseSearch);
         if (!responseSearch) {
             console.log("Error search");
         }
         setProduct(responseSearch)
     }
 
+    useEffect(() => {
+        if (search == '') {
+            onSearch()
+        }
+        if (search) {
+            onSearch()
+        }
+    }, [search])
 
     return (
         <Navbar>
@@ -116,7 +128,7 @@ export const Home = () => {
                             <div className=' flex justify-between items-center mt-2'>
                                 <div className=' [270px] relative flex items-center'>
                                     <input type="text"
-                                        onChange={(e) => setSearch(e.target.value)}
+                                        onChange={handleSearch}
                                         value={search}
                                         placeholder='Search'
                                         className=' w-[270px] pl-9 border-2 border-black outline-none py-2 rounded-md'
@@ -128,7 +140,7 @@ export const Home = () => {
                         </div>
                     </div>
                 </div>
-                <HomeProduct selectedType={selectedType} product={product} />
+                <HomeProduct selectedType={selectedType} product={product} search={search} />
             </div>
         </Navbar>
     )

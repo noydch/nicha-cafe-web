@@ -62,9 +62,26 @@ export const getOrder = async () => {
             }
         }
         const response = await axios.get(ApiPath.getAllOrders, config)
-        console.log(response?.data?.data);
+        // console.log(response?.data?.data);
         return response?.data?.data;
     } catch (error) {
         console.log("Get order error:", error);
+    }
+}
+
+export const getOrderDetailJoinAPI = async () => {
+    try {
+        const orderOids = localStorage.getItem('oid');
+
+        const config = {
+            headers: {
+                "Content": "application/json"
+            }
+        }
+        const response = await axios.get(`${ApiPath.getOneJoinDetail}/${orderOids}`, config)
+        // console.log(response);
+        return response.data
+    } catch (error) {
+        console.log("Join order detail error", error);
     }
 }

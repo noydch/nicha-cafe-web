@@ -15,6 +15,7 @@ export const Payment = () => {
     const selectTable = useStore((state) => state.selectTable);
     const [dataImg, setDataImg] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [getOrderData, setGetOrderData] = useState([])
 
     const id = localStorage.getItem('id')
     if (!id) {
@@ -33,6 +34,21 @@ export const Payment = () => {
     // total quantity * price
     const total = cart.reduce((total, item) => total + item.quantity * item.price, 0)
 
+    const fetchAPI = async () => {
+        setLoading(true)
+        const response = await getOrder();
+        setGetOrderData(response)
+        setLoading(false)
+    }
+    // useEffect(() => {
+    //     fetchAPI()
+    //     console.log(getOrderData);
+    //     // how to get all OID in getOrderData
+    //     // console.log(getOrderData);
+    //     const oid = getOrderData.map((item) => item.OID)
+    //     console.log(oid);
+    //     localStorage.setItem('oid', JSON.stringify(oid))
+    // }, [])
 
     const confirmPayment = async () => {
         setLoading(true)
@@ -42,16 +58,19 @@ export const Payment = () => {
             file: dataImg
         }
         const response = await addOrderTableNo(data);
+
         if (!response) {
             Swal.fire({
                 icon: 'error',
                 title: 'ເກີດຂໍ້ຜິດພາດ',
-                text: "ກາລຸນາສະແກນ QR ໂຕະກ່ອນ",
+                text: "ຂໍ້ມູນບໍ່ຄົບ",
                 width: "300px"
             })
             setLoading(false)
             return
         }
+        localStorage.setItem('oid', [response])
+
 
         for (let item of cart) {
             const data2 = {
@@ -71,22 +90,23 @@ export const Payment = () => {
                 return
             }
         }
+
         setLoading(true)
         Swal.fire({
             icon: 'success',
             title: "ຊຳລະເງິນສຳເລັດ!",
             width: '300px'
         }).then(() => {
-            navigate('/history')
+            navigate('/historyAwait')
             checkout()
         });
     }
+
 
     return (
         <div className='w-full max-w-sm mx-auto bg-white h-screen relative'>
             <div className='bg-[#fffcf2] h-[60px] w-full shadow'>
                 <div className='relative flex items-center h-full max-w-sm mx-auto justify-center'>
-
                     <h2 className=' text-[20px] font-semibold'>ການຊຳລະເງິນ</h2>
                 </div>
             </div>

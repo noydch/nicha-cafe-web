@@ -7,8 +7,8 @@ const useStore = create(
         (set) => ({
             cart: [],
             orderHistory: [],
-            selectTable: '',
-            setSelectTable: (table) => set({ selectTable: table }),
+            // selectTable: '',
+            // setSelectTable: (table) => set({ selectTable: table }),
             addToCart: (item) => {
                 set((state) => {
                     const existingItem = state.cart.find(cartItem => cartItem.PID === item.PID);

@@ -4,7 +4,7 @@ import useStore from '../../components/store';
 import Swal from 'sweetalert2';
 import { getProductApi, searchProductApi } from '../../api/product';
 
-export const HomeProduct = ({ selectedType, product }) => {
+export const HomeProduct = ({ selectedType, product, search }) => {
     const addToCart = useStore((state) => state.addToCart);
 
     const [loading, setLoading] = useState(false);

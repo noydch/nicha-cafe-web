@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import logo from '../assets/logos.jpeg'
 import { IoMenu, IoClose, IoHome } from "react-icons/io5";
 import { AiFillProduct } from "react-icons/ai";
+import { RiLoader2Fill } from "react-icons/ri";
 import { MdManageHistory } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { dataProduct } from '../views/home/data';
@@ -18,10 +19,17 @@ export const Navbar = ({ children }) => {
             path: '/'
         },
         {
+            title: 'ກຳລັງດຳເນີນການ',
+            icon: <RiLoader2Fill />,
+            path: '/historyAwait'
+        },
+        {
             title: 'ປະຫວັດການຂາຍ',
             icon: <MdManageHistory />,
             path: '/history'
-        }]
+        },
+    ]
+
     const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
     return (
         <div className=' w-full bg-[#fffcf2]'>

@@ -14,6 +14,7 @@ export const History = () => {
         console.log("not found id");
     }
 
+    const orderID = localStorage.getItem('orderID')
 
     return (
         <div className='w-full bg-white h-screen relative'>
@@ -53,7 +54,7 @@ export const History = () => {
                                                         className='w-16 h-16 object-cover rounded-md'
                                                     />
                                                 </td>
-                                                <td className='text-center py-5 px-2 font-medium'>{item.nameLao}</td>
+                                                <td className='text-center py-5 px-2 font-medium'>{item.name}</td>
                                                 <td className='text-center py-5 px-2 font-medium'>{item.price}</td>
                                                 <td className='text-center py-5 px-2 font-medium'>
                                                     <div className='flex w-full justify-center gap-1 items-center'>

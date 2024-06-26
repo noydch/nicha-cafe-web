@@ -1,4 +1,5 @@
-const baseUrl = "https://niicha-server-esiv.onrender.com/api";
+// const baseUrl = "https://niicha-server-esiv.onrender.com/api";
+const baseUrl = "http://localhost:3001/api";
 export default class ApiPath {
 
     // ----- auth -----
@@ -42,6 +43,7 @@ export default class ApiPath {
     static addOrderTableNo = `${baseUrl}/order/insertNoTable`
     static updateOrder = `${baseUrl}/order/update/`;
     static deleteOrder = `${baseUrl}/order/delete/`;
+    static getOneJoinDetail = `${baseUrl}/order/getOneJoinDetail`
 
     // ----- order detail -----
     static getAllOrderDetails = `${baseUrl}/orderDetail/getAll/`;

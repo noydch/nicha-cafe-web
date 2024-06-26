@@ -16,6 +16,12 @@ export const Cart = () => {
     const [loading, setLoading] = useState(false)
     const [tableData, setTableData] = useState([])
 
+    const id = localStorage.getItem('id')
+    if (!id) {
+        console.log("not found id");
+    }
+
+
     const addQty = (id) => {
         updateQty(id, 1)
     }
@@ -31,7 +37,7 @@ export const Cart = () => {
             <div className=' max-w-sm mx-auto h-full relative bg-white pb-[70px]'>
                 <div className='bg-[#fffcf2] h-[60px] w-full shadow'>
                     <div className='relative flex items-center h-full max-w-sm mx-auto justify-center'>
-                        <Link to={'/'} className='absolute left-0 text-[24px]'>
+                        <Link to={`/${id}`} className='absolute left-0 text-[24px]'>
                             <IoIosArrowBack
                             />
                         </Link>
