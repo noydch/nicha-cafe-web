@@ -11,7 +11,6 @@ export const History = () => {
 
     const id = localStorage.getItem('id')
     if (!id) {
-        clearHistory()
         console.log("not found id");
     }
 
@@ -20,7 +19,7 @@ export const History = () => {
         <div className='w-full bg-white h-screen relative'>
             <div className='bg-[#fffcf2] h-[60px] w-full shadow'>
                 <div className='relative flex items-center h-full max-w-sm mx-auto justify-center'>
-                    <Link to={'/'} className='absolute left-0 text-[24px]'>
+                    <Link to={`/${id}`} className='absolute left-0 text-[24px]'>
                         <IoIosArrowBack
                         />
                     </Link>

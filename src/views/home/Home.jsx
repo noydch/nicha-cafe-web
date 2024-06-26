@@ -17,8 +17,8 @@ export const Home = () => {
         if (!paramId || paramId === '/') {
             // setId('1');
             Swal.fire({
-                icon: 'error',
-                title: "ເກີດຂໍ້ຜິດພາດ",
+                icon: 'warning',
+                title: "ແຈ້ງເຕືອນ",
                 text: "ຕ້ອງສະແກນ QR ກ່ອນ",
                 width: "300px"
             });
