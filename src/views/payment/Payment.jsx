@@ -14,7 +14,7 @@ export const Payment = () => {
     const checkout = useStore((state) => state.checkout)
     const selectTable = useStore((state) => state.selectTable);
     const [dataImg, setDataImg] = useState(null)
-    const [order, setOrder] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const id = localStorage.getItem('id')
     if (!id) {
@@ -35,6 +35,7 @@ export const Payment = () => {
 
 
     const confirmPayment = async () => {
+        setLoading(true)
         const data = {
             noTable: id,
             totalPrice: total,
@@ -48,6 +49,7 @@ export const Payment = () => {
                 text: "ກາລຸນາສະແກນ QR ໂຕະກ່ອນ",
                 width: "300px"
             })
+            setLoading(false)
             return
         }
 
@@ -65,9 +67,11 @@ export const Payment = () => {
                     title: 'Error',
                     text: 'Failed to add order detail'
                 })
+                setLoading(false)
                 return
             }
         }
+        setLoading(true)
         Swal.fire({
             icon: 'success',
             title: "ຊຳລະເງິນສຳເລັດ!",
@@ -112,11 +116,15 @@ export const Payment = () => {
                 </div>
             </div>
             <div className='fixed bottom-0 max-w-sm w-full'>
-                <div className=' items-center flex justify-between w-full mt-10  bg-white h-[60px]'>
+                <div className=' items-center flex justify-around w-full mt-10  bg-white h-[60px]'>
                     <Link to={'/cart'}
                         className=' w-[150px] rounded-md text-center bg-gray-400 py-1.5'>ຍົກເລີກ</Link>
                     <button onClick={confirmPayment}
-                        className=' w-[150px] rounded-md text-center bg-green-400 py-1.5'>ຢືນຢັນການຊຳລະເງິນ</button>
+                        className=' w-[150px] rounded-md text-center bg-green-400 py-1.5'>
+                        {
+                            loading ? "ກຳລັງດຳເນີນການ..." : "ຢືນຢັນການຊຳລະເງິນ"
+                        }
+                    </button>
                 </div>
             </div>
         </div>

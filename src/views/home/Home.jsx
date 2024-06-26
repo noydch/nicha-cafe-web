@@ -19,7 +19,7 @@ export const Home = () => {
             Swal.fire({
                 icon: 'warning',
                 title: "ແຈ້ງເຕືອນ",
-                text: "ຕ້ອງສະແກນ QR ກ່ອນ",
+                text: "ກະລຸນາສະແກນ QR ໂຕະກ່ອນ",
                 width: "300px"
             });
         } else {
