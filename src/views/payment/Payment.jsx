@@ -44,14 +44,16 @@ export const Payment = () => {
         if (!response) {
             Swal.fire({
                 icon: 'error',
-                title: 'Error'
+                title: 'ເກີດຂໍ້ຜິດພາດ',
+                text: "ກາລຸນາສະແກນ QR ໂຕະກ່ອນ",
+                width: "300px"
             })
             return
         }
 
         for (let item of cart) {
             const data2 = {
-                orders_id: 80,
+                orders_id: response,
                 product_id: item.PID,
                 qty: item.quantity,
                 total: item.price * item.quantity

@@ -15,7 +15,13 @@ export const Home = () => {
 
     useEffect(() => {
         if (!paramId || paramId === '/') {
-            setId('1');
+            // setId('1');
+            Swal.fire({
+                icon: 'error',
+                title: "ເກີດຂໍ້ຜິດພາດ",
+                text: "ຕ້ອງສະແກນ QR ກ່ອນ",
+                width: "300px"
+            });
         } else {
             setId(paramId);
         }

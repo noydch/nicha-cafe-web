@@ -46,7 +46,7 @@ export const addOrderTableNo = async (data) => {
         const response = await axios.post(ApiPath.addOrderTableNo, formData, headerConfig);
         console.log("res of AddProductApi =>> ");
         console.log(response);
-        return response
+        return response.data.data
 
     } catch (error) {
         console.log("error occured in AddProductApi ==> ", error);
