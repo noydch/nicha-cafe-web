@@ -5,6 +5,8 @@ import { Cart } from '../views/cart/Cart';
 import { Payment } from '../views/payment/Payment';
 import { History } from '../views/orderHistory/History';
 import { HistoryAwait } from '../views/historyAwait/HistoryAwait';
+import { OrderCancel } from '../views/cancel/OrderCancel';
+import { Pedding } from '../views/pedding/Pedding';
 
 export default function RouterPath() {
     const router = createBrowserRouter([
@@ -31,6 +33,14 @@ export default function RouterPath() {
         {
             path: '/historyAwait',
             element: <HistoryAwait />
+        },
+        {
+            path: '/pedding',
+            element: <Pedding />
+        },
+        {
+            path: '/orderCancel',
+            element: <OrderCancel />
         }
     ])
     return <RouterProvider router={router} />

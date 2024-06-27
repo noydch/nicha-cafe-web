@@ -7,7 +7,7 @@ import formatNumber from '../../components/formatNumber';
 import { Link } from 'react-router-dom';
 import { getOrder, getOrderDetailJoinAPI } from '../../api/order';
 
-export const History = () => {
+export const Pedding = () => {
     const [orderJoinData, setOrderJoinData] = useState([]);
     const [getOrderData, setGetOrderData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ export const History = () => {
                             getOrderData
                                 .filter(item => oid.includes(item.OID))
                                 .map((item, index) => (
-                                    item.status == "ສຳເລັດ" && (
+                                    item.status == "ກຳລັງດຳເນີນ" && (
                                         <tr key={index}>
                                             <td className='text-center py-5 font-medium'>{item.noTable}</td>
                                             <td className='text-center py-5 font-medium'>{item.OID}</td>

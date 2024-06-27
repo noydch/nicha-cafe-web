@@ -63,7 +63,7 @@ export const Cart = () => {
                                     {
                                         cart.map((item, index) => (
                                             <tr key={index}>
-                                                <td className=' text-center py-5 font-medium'>{item.id}</td>
+                                                <td className=' text-center py-5 font-medium'>{item.PID}</td>
                                                 <td className=' py-1'>
                                                     <img src={item.image} alt=""
                                                         className=' w-16 h-16 object-cover rounded-md'

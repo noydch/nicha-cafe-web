@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import useStore from '../../components/store';
 import { IoIosArrowBack } from "react-icons/io";
 import { RiLoader2Fill } from "react-icons/ri";
+import { BiBlock } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
 import formatNumber from '../../components/formatNumber';
 import { Link } from 'react-router-dom';
 import { getOrder, getOrderDetailJoinAPI } from '../../api/order';
 
-export const History = () => {
+export const OrderCancel = () => {
     const [orderJoinData, setOrderJoinData] = useState([]);
     const [getOrderData, setGetOrderData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -63,14 +64,14 @@ export const History = () => {
                             getOrderData
                                 .filter(item => oid.includes(item.OID))
                                 .map((item, index) => (
-                                    item.status == "ສຳເລັດ" && (
+                                    item.status == "ຍົກເລີກ" && (
                                         <tr key={index}>
                                             <td className='text-center py-5 font-medium'>{item.noTable}</td>
                                             <td className='text-center py-5 font-medium'>{item.OID}</td>
                                             <td className='text-center py-5 px-2 font-medium'>{item.createdAt}</td>
                                             <td className='text-center py-5 px-2 font-medium'>
-                                                <div className={`flex justify-center items-center gap-2  font-semibold ${item.status == "ສຳເລັດ" ? "text-green-500" : "text-orange-200"}`}>
-                                                    <span>{item.status}</span> {item.status == "ສຳເລັດ" ? <FaCheckCircle /> : <RiLoader2Fill />}
+                                                <div className={`flex justify-center items-center gap-2  font-semibold ${item.status == "ສຳເລັດ" ? "text-green-500" : item.status == "ກຳລັງດຳເນີນ" ? "text-orange-200" : " text-red-400"}`}>
+                                                    <span>{item.status}</span> {item.status == "ສຳເລັດ" ? <FaCheckCircle /> : <BiBlock />}
                                                 </div>
                                             </td>
                                             <td className='text-center py-5 px-2 font-medium'>

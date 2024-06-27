@@ -34,20 +34,15 @@ export const Payment = () => {
     // total quantity * price
     const total = cart.reduce((total, item) => total + item.quantity * item.price, 0)
 
-    const fetchAPI = async () => {
-        setLoading(true)
-        const response = await getOrder();
-        setGetOrderData(response)
-        setLoading(false)
-    }
+    // const fetchAPI = async () => {
+    //     setLoading(true)
+    //     const response = await getOrder();
+    //     setGetOrderData(response)
+    //     setLoading(false)
+    // }
     // useEffect(() => {
     //     fetchAPI()
-    //     console.log(getOrderData);
-    //     // how to get all OID in getOrderData
     //     // console.log(getOrderData);
-    //     const oid = getOrderData.map((item) => item.OID)
-    //     console.log(oid);
-    //     localStorage.setItem('oid', JSON.stringify(oid))
     // }, [])
 
     const confirmPayment = async () => {
@@ -70,6 +65,17 @@ export const Payment = () => {
             return
         }
         localStorage.setItem('oid', [response])
+        const newOID = [response]; // สมมติว่า OID อยู่ใน response.OID
+
+        // ดึงอาร์เรย์ OID จาก localStorage
+        let oidArray = JSON.parse(localStorage.getItem('oidArray'));
+
+        // เพิ่ม OID ใหม่เข้าไปในอาร์เรย์
+        oidArray.push(newOID);
+
+        // บันทึกอาร์เรย์ OID ที่อัปเดตแล้วลง localStorage
+        localStorage.setItem('oidArray', JSON.stringify(oidArray));
+        console.log(oidArray);
 
 
         for (let item of cart) {
@@ -97,6 +103,7 @@ export const Payment = () => {
             title: "ຊຳລະເງິນສຳເລັດ!",
             width: '300px'
         }).then(() => {
+            clearCart()
             navigate('/historyAwait')
             checkout()
         });

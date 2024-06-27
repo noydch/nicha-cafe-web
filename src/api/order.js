@@ -71,17 +71,35 @@ export const getOrder = async () => {
 
 export const getOrderDetailJoinAPI = async () => {
     try {
-        const orderOids = localStorage.getItem('oid');
+        const oidArray = JSON.parse(localStorage.getItem('oidArray')) || [];
+
+        if (oidArray.length === 0) {
+            console.log("ไม่มี OID ที่บันทึกไว้");
+            return [];
+        }
 
         const config = {
             headers: {
-                "Content": "application/json"
+                "Content-Type": "application/json"
             }
-        }
-        const response = await axios.get(`${ApiPath.getOneJoinDetail}/${orderOids}`, config)
-        // console.log(response);
-        return response.data
+        };
+
+        // สร้าง array ของ promises สำหรับทุก OID
+        const promises = oidArray.map(oid =>
+            axios.get(`${ApiPath.getOneJoinDetail}/${oid}`, config)
+        );
+
+        // รอให้ทุก request เสร็จสิ้น
+        const responses = await Promise.all(promises);
+
+        // รวมข้อมูลจากทุก response
+        const allData = responses.map(response => response.data);
+
+        console.log("ข้อมูลที่ได้รับจาก API:", allData);
+        return allData;
+
     } catch (error) {
-        console.log("Join order detail error", error);
+        console.error("เกิดข้อผิดพลาดในการดึงข้อมูล order detail:", error);
+        throw error;
     }
 }

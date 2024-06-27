@@ -4,6 +4,7 @@ import { IoMenu, IoClose, IoHome } from "react-icons/io5";
 import { AiFillProduct } from "react-icons/ai";
 import { RiLoader2Fill } from "react-icons/ri";
 import { MdManageHistory } from "react-icons/md";
+import { BiBlock } from "react-icons/bi";
 import { FaShoppingCart } from "react-icons/fa";
 import { dataProduct } from '../views/home/data';
 import useStore from './store';
@@ -21,7 +22,12 @@ export const Navbar = ({ children }) => {
         {
             title: 'ກຳລັງດຳເນີນການ',
             icon: <RiLoader2Fill />,
-            path: '/historyAwait'
+            path: '/pedding'
+        },
+        {
+            title: 'ຍົກເລີກ',
+            icon: <BiBlock />,
+            path: '/orderCancel'
         },
         {
             title: 'ປະຫວັດການຂາຍ',
@@ -35,9 +41,9 @@ export const Navbar = ({ children }) => {
         <div className=' w-full bg-[#fffcf2]'>
             <nav className=' relative flex items-center justify-between max-w-sm mx-auto h-[60px]'>
                 <div className=' border-2 rounded-full border-gray-400'>
-                    <img src={logo} alt="" className=' w-12 rounded-full' />
+                    <img src={logo} alt="" className=' w-11 rounded-full' />
                 </div>
-                <ul className={`absolute -right-7 top-12 bg-[#fffcf2] w-[180px] z-50 ${showMenu ? 'hidden' : 'block'}`}>
+                <ul className={`absolute -right-7 top-[60px] bg-[#fffcf2] w-[180px] z-50 ${showMenu ? 'hidden' : 'block'}`}>
                     {
                         navData.map((item, index) => (
                             <Link to={item.path} key={index} className=' flex items-center gap-x-2 p-2 hover:bg-[#e3f3da]'>

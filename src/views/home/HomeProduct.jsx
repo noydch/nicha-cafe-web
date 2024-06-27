@@ -31,7 +31,7 @@ export const HomeProduct = ({ selectedType, product, search }) => {
                                     <p className='text-[14px] font-semibold'>
                                         <span className='mr-1'>{item.price}</span>₭
                                     </p>
-                                    <div className='bg-[#e3f3da] p-1 rounded-md text-[#daa7e2]' onClick={() => addToCart(item)}>
+                                    <div className='bg-[#e3f3da] cursor-pointer p-1 rounded-md text-[#daa7e2]' onClick={() => addToCart(item)}>
                                         <FaCartPlus />
                                     </div>
                                 </div>
