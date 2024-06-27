@@ -22,7 +22,6 @@ export const Payment = () => {
         console.log("not found id");
     }
 
-
     const handleImageChange = (event) => {
         const file = event.target.files[0]
         if (file) {
@@ -31,19 +30,7 @@ export const Payment = () => {
         }
     }
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0)
-    // total quantity * price
     const total = cart.reduce((total, item) => total + item.quantity * item.price, 0)
-
-    // const fetchAPI = async () => {
-    //     setLoading(true)
-    //     const response = await getOrder();
-    //     setGetOrderData(response)
-    //     setLoading(false)
-    // }
-    // useEffect(() => {
-    //     fetchAPI()
-    //     // console.log(getOrderData);
-    // }, [])
 
     const confirmPayment = async () => {
         setLoading(true)
@@ -68,7 +55,7 @@ export const Payment = () => {
         const newOID = [response]; // สมมติว่า OID อยู่ใน response.OID
 
         // ดึงอาร์เรย์ OID จาก localStorage
-        let oidArray = JSON.parse(localStorage.getItem('oidArray'));
+        let oidArray = JSON.parse(localStorage.getItem('oidArray') || []);
 
         // เพิ่ม OID ใหม่เข้าไปในอาร์เรย์
         oidArray.push(newOID);
