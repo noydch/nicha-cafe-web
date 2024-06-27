@@ -68,20 +68,10 @@ export const getOrder = async () => {
         console.log("Get order error:", error);
     }
 }
+
 export const getOrderDetailJoinAPI = async () => {
     try {
-        let oidArray = [];
-        const storedOidArray = localStorage.getItem('oidArray');
-
-        if (storedOidArray) {
-            try {
-                oidArray = JSON.parse(storedOidArray);
-            } catch (parseError) {
-                console.error("Error parsing oidArray from localStorage:", parseError);
-                // If parsing fails, assume it's an empty array
-                oidArray = [];
-            }
-        }
+        const oidArray = JSON.parse(localStorage.getItem('oidArray')) || [];
 
         if (oidArray.length === 0) {
             console.log("ไม่มี OID ที่บันทึกไว้");
@@ -107,6 +97,7 @@ export const getOrderDetailJoinAPI = async () => {
 
         console.log("ข้อมูลที่ได้รับจาก API:", allData);
         return allData;
+
     } catch (error) {
         console.error("เกิดข้อผิดพลาดในการดึงข้อมูล order detail:", error);
         throw error;
