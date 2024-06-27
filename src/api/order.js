@@ -71,7 +71,7 @@ export const getOrder = async () => {
 
 export const getOrderDetailJoinAPI = async () => {
     try {
-        const oidArray = JSON.parse(localStorage.getItem('oidArray')) || [];
+        const oidArray = JSON.parse(localStorage.getItem('oidArray') || []);
 
         if (oidArray.length === 0) {
             console.log("ไม่มี OID ที่บันทึกไว้");
