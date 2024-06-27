@@ -1,5 +1,6 @@
 const baseUrl = "https://niicha-server-esiv.onrender.com/api";
 // const baseUrl = "http://localhost:3001/api";
+
 export default class ApiPath {
 
     // ----- auth -----
