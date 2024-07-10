@@ -6,6 +6,8 @@ import formatNumber from '../../components/formatNumber'
 import { addOrderTableNo, getOrder } from '../../api/order'
 import { addOrderDetail } from '../../api/orderDetail'
 
+import qrCodeImg from '../../assets/qrCode.jpg'
+
 export const Payment = () => {
     const [image, setImage] = useState(null)
     const navigate = useNavigate()
@@ -34,17 +36,6 @@ export const Payment = () => {
     // total quantity * price
     const total = cart.reduce((total, item) => total + item.quantity * item.price, 0)
 
-    // const fetchAPI = async () => {
-    //     setLoading(true)
-    //     const response = await getOrder();
-    //     setGetOrderData(response)
-    //     setLoading(false)
-    // }
-    // useEffect(() => {
-    //     fetchAPI()
-    //     // console.log(getOrderData);
-    // }, [])
-
     const confirmPayment = async () => {
         setLoading(true)
         const data = {
@@ -65,15 +56,13 @@ export const Payment = () => {
             return
         }
         // localStorage.setItem('oid', [response])
-        const newOID = [response]; // สมมติว่า OID อยู่ใน response.OID
+        const newOID = [response];
 
-        // ดึงอาร์เรย์ OID จาก localStorage
+
         let oidArray = JSON.parse(localStorage.getItem('oidArray')) || [];
 
-        // เพิ่ม OID ใหม่เข้าไปในอาร์เรย์
         oidArray.push(newOID);
 
-        // บันทึกอาร์เรย์ OID ที่อัปเดตแล้วลง localStorage
         localStorage.setItem('oidArray', JSON.stringify(oidArray));
         console.log(oidArray);
 
@@ -124,9 +113,11 @@ export const Payment = () => {
                     ຈຳນວນເງິນທີ່ຕ້ອງຈ່າຍ <br /> <span className=' text-green-500 font-bold'>{formatNumber(totalPrice)}</span> ກີບ
                 </h2>
                 <div className=' w-full flex flex-col items-center mt-2'>
-                    <img src="https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg" alt=""
-                        className=' w-[250px]  mb-5'
-                    />
+                    <div className=' w-[250px] h-[300px] mb-5 border-2'>
+                        <img src={qrCodeImg} alt=""
+                            className=' w-[250px] h-[290px] object-cover'
+                        />
+                    </div>
                     <div>
                         <label htmlFor="uploadImg" className=' text-[18px]'>ອັບໂຫລດສະລິປການໂອນ</label>
                         <input type="file" id='uploadImg'
